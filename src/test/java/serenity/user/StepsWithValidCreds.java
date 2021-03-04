@@ -1,4 +1,4 @@
-package serenity;
+package serenity.user;
 
 import driver.DriverSingleton;
 import net.thucydides.core.annotations.Step;
@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.LoginPage;
+import pages.user_cite.LoginPage;
 
 public class StepsWithValidCreds {
     private static DriverSingleton DrS;
@@ -14,11 +14,8 @@ public class StepsWithValidCreds {
 
     @Step
     public void open_login_page() {
-        /*System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);*/
-        loginPage.setDriver(DrS.getDriver());
+
+        //loginPage.setDriver(DrS.getDriver());
         loginPage.open();
     }
     @Step
@@ -36,20 +33,20 @@ public class StepsWithValidCreds {
 
     @Step
     public void should_be_signin_page() {
-        Assert.assertEquals("https://staging.rafflehouse.com/sign-in", DrS.getDriver().getCurrentUrl());
+        Assert.assertEquals("https://staging.rafflehouse.com/sign-in", loginPage.getDriver().getCurrentUrl());
     }
 
     @Step
     public void should_be_main_page() {
-        Assert.assertEquals("https://staging.rafflehouse.com", DrS.getDriver().getCurrentUrl());
-        Assert.assertEquals("Raffle House", DrS.getDriver().getTitle());
+        Assert.assertEquals("https://staging.rafflehouse.com", loginPage.getDriver().getCurrentUrl());
+        Assert.assertEquals("Raffle House", loginPage.getDriver().getTitle());
     }
     @Step
     public void should_be_profile_page() {
-        WebDriverWait wait = new WebDriverWait(DrS.getDriver(), 10); // seconds
+        WebDriverWait wait = new WebDriverWait(loginPage.getDriver(), 10); // seconds
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='My Details']")));
 
-        Assert.assertEquals("https://staging.rafflehouse.com/profile", DrS.getDriver().getCurrentUrl());
-        Assert.assertEquals("Raffle House", DrS.getDriver().getTitle());
+        Assert.assertEquals("https://staging.rafflehouse.com/profile", loginPage.getDriver().getCurrentUrl());
+        Assert.assertEquals("Raffle House", loginPage.getDriver().getTitle());
     }
 }

@@ -1,9 +1,9 @@
 package utils;
 
-public enum URLS {
+public enum URLS_USERS {
     LOGIN_PAGE("gdfgdfg"), PROFILE_PAGE("dfgdg"), MAIN_PAGE("");
 
-    URLS(String input) {
+    URLS_USERS(String input) {
         url = input;
     }
 
